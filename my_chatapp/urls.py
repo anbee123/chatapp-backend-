@@ -1,4 +1,4 @@
-"""chat_app URL Configuration
+"""my_chatapp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -18,6 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
   path('admin/', admin.site.urls),
-  # Add the line below
-  path('', include('chat.urls'))  # <- add this line to connect my_app_name's URL to project
+
+  path('', include('chat.urls'))
 ]
