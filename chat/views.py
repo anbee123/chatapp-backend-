@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import JsonResponse
+from chat.models import Room
 
 def index(request):
-  return HttpResponse('<h1> MY INDEX PAGE </h1>')
+    rooms = Room.objects.all()
+    data = list(rooms.values())
+    return JsonResponse(data, safe=False)
