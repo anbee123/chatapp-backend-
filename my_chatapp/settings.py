@@ -76,8 +76,8 @@ WSGI_APPLICATION = 'my_chatapp.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql'
-        'NAME':'user',
+         'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'chat',
     }
 }
 
