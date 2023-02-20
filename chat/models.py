@@ -10,3 +10,7 @@ class Message(models.Model):
     user = models.CharField(max_length=100000)
     room = models.CharField(max_length=100000)
     receiver = models.CharField(max_length=100000)
+
+def __str__(self):
+    return self.name
+
