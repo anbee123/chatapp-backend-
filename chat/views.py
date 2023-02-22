@@ -18,10 +18,10 @@ def chat_detail(request, roomName):
     messages = Chat.objects.filter(roomName=roomName)
     serializer = ChatSerializer(messages, many=True)
     return JsonResponse(serializer.data, safe=False)
-  if request.method == "DELETE":
-    room = Chat.objects.filter(roomName=roomName)
-    room.delete()
-    return JsonResponse({'message': 'Room was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+  # if request.method == "DELETE":
+  #   room = Chat.objects.filter(roomName=roomName)
+  #   room.delete()
+  #   return JsonResponse({'message': 'Message was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET','POST'])
 def chat_room(request):
@@ -40,3 +40,21 @@ def chat_room(request):
     chat.save()
     return JsonResponse({"status": "201"})
 
+@api_view(['DELETE', 'PUT'])
+def chat_edit(request, pk):
+  try:
+    chat = Chat.objects.get(pk=pk)
+  except Chat.DoesNotExist:
+    return JsonResponse({'message': 'Message does not exist!'}, status=status.HTTP_204_NO_CONTENT)
+
+  if request.method == 'DELETE':
+    chat.delete()
+    return JsonResponse({'message': 'Message was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+  if request.method == 'PUT':
+    chatData = JSONParser().parse(request)
+    serializer = ChatSerializer(chat, data=chatData)
+    if serializer.is_valid():
+      serializer.save()
+      return JsonResponse(serializer.data)
+    return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
