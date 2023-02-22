@@ -13,13 +13,13 @@ def index(request):
   return HttpResponse('<h1> MY INDEX PAGE </h1>')
 
 @api_view(['GET', 'DELETE'])
-def chat_detail(request, roomName, userName):
+def chat_detail(request, roomName):
   if request.method == "GET":
-    messages = Chat.objects.filter(roomName=roomName, userName=userName)
+    messages = Chat.objects.filter(roomName=roomName)
     serializer = ChatSerializer(messages, many=True)
     return JsonResponse(serializer.data, safe=False)
   if request.method == "DELETE":
-    room = Chat.objects.filter(roomName=roomName, userName=userName)
+    room = Chat.objects.filter(roomName=roomName)
     room.delete()
     return JsonResponse({'message': 'Room was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
