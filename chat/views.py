@@ -7,6 +7,8 @@ from django.http.response import JsonResponse
 # from django.shortcuts import get_object_or_404
 from chat.models import Message
 from chat.serializers import MessageSerializer
+# from chat.models import User
+# from chat.serializers import UserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework import status
@@ -55,6 +57,36 @@ def chat_detail(request, pk):
     chat.delete()
     return JsonResponse({'message': 'Message was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
+
+# @api_view(['POST'])
+# def user_detail(request):
+
+#   if request.method == 'POST':
+#     # reqInfo = JSONParser().parse(request)
+#     u_email = request.GET['email']
+#     u_pass = request.Get['password']
+#     print(f'{request} -------{u_email}--')
+
+
+#     userInfo = User.objects.all()
+#     user_serializer = UserSerializer(userInfo, many=True)
+    # return JsonResponse(user_serializer.data, safe=False)
+
+  #   user_serializer
+  #   user_serializer = UserSerializer(chat)
+  #   return JsonResponse(user_serializer.data)
+
+  # elif request.method == 'PUT':
+  #   chat_data = JSONParser().parse(request)
+  #   chat_serializer = MessageSerializer(chat, data=chat_data)
+  #   if chat_serializer.is_valid():
+  #     chat_serializer.save()
+  #     return JsonResponse(chat_serializer.data)
+  #   return JsonResponse(chat_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+  # elif request.method == 'DELETE':
+  #   chat.delete()
+  #   return JsonResponse({'message': 'Message was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
 
 # class Message(APIView):
