@@ -55,6 +55,9 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000'
+# ]
 
 ROOT_URLCONF = 'my_chatapp.urls'
 
