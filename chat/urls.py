@@ -1,9 +1,8 @@
 from django.urls import path, re_path, include
-from . import views
+from .views import chat_room, chat_detail, chat_edit
 
 urlpatterns=[
-   # path('', views.index, name='index'),
-   re_path(r'^$', views.chat_list),
-   re_path(r'^(?P<pk>[0-9]+)$', views.chat_detail),
-   # re_path(r'^api/user$', views.user_detail)
+   path('api/chat/', chat_room, name='room'),
+   path('api/chat/<str:roomName>', chat_detail, name='chatdetail'),
+   path('api/chat/edit/<int:pk>', chat_edit, name='chatedit')
 ]
